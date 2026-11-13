@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-09",
+  "last_updated": "2026-11-13",
   "notes": "Curated 'current best' registry for Fal.ai, refreshed daily from fal.ai/explore/recently-added by a scheduled task. Each model has a `pricing` block: unit = image | second | image_tier, usd = base list price, by_resolution = per-tier price, verified = date checked on fal.ai/models/{fal_id}. Defaults are only changed with the owner's approval. Older video fields (unit_price_per_second_usd) are kept for compatibility.",
   "image": {
     "default": "nano-banana-pro",
@@ -55,6 +55,138 @@
           "note": "Token-based: image output $30/1M tokens, input $8/1M; quality=high by default. No fixed per-image price.",
           "verified": "2026-11-09"
         }
+      },
+      "nano-banana-2-1": {
+        "fal_id": "google/nano-banana-2.1",
+        "best_for": "Nuovo modello Google, ottimo per testo leggibile nelle immagini (poster, infografiche, packaging, diagrammi) e formati panoramici (fino a 8:1). Molto più economico di Nano Banana Pro; solo text-to-image.",
+        "default_args": {
+          "aspect_ratio": "16:9",
+          "resolution": "2K",
+          "num_images": 1
+        },
+        "output_path": "images[0].url",
+        "pricing": {
+          "unit": "image",
+          "usd": 0.04,
+          "by_resolution": {
+            "1K": 0.04,
+            "2K": 0.059,
+            "4K": 0.134
+          },
+          "note": "Fatturazione a token (immagine in output $35,294/1M). Prezzi per immagine = stime indicate da fal con prompt breve e thinking medio.",
+          "verified": "2026-11-13"
+        }
+      },
+      "nano-banana-2-1-edit": {
+        "fal_id": "google/nano-banana-2.1/edit",
+        "best_for": "Editing di Nano Banana 2.1: modifiche precise in linguaggio naturale senza maschere, coerenza dei soggetti, fino a 14 immagini di riferimento. Da usare con --input-image (campo image_urls).",
+        "default_args": {
+          "aspect_ratio": "auto",
+          "resolution": "2K",
+          "num_images": 1
+        },
+        "output_path": "images[0].url",
+        "pricing": {
+          "unit": "image",
+          "usd": 0.044,
+          "by_resolution": {
+            "1K": 0.044,
+            "2K": 0.063,
+            "4K": 0.138
+          },
+          "note": "Fatturazione a token; stime fal con due immagini 1K in input (ogni immagine in input ~ $0,002).",
+          "verified": "2026-11-13"
+        }
+      },
+      "flux-3": {
+        "fal_id": "blackforestlabs/flux-3/text-to-image",
+        "best_for": "FLUX 3 di Black Forest Labs: immagini dettagliate e ben composte in 2K/4K nativi, controllo preciso del layout e testo migliorato. Buona alternativa per grafica e composizioni curate.",
+        "default_args": {},
+        "output_path": "images[0].url",
+        "pricing": {
+          "unit": "image",
+          "usd": 0.048,
+          "by_resolution": {
+            "1K": 0.048
+          },
+          "note": "La pagina dà solo il prezzo 1K (1 MP); 2K/4K costano di più ma il prezzo non è indicato. Parametri non verificati (schema non leggibile).",
+          "verified": "2026-11-13"
+        }
+      },
+      "flux-3-edit": {
+        "fal_id": "blackforestlabs/flux-3/edit-image",
+        "best_for": "Editing di FLUX 3: modifiche locali precise lasciando intatto il resto, fino a 10 riferimenti. Da usare con --input-image.",
+        "default_args": {},
+        "output_path": "images[0].url",
+        "pricing": {
+          "unit": "image",
+          "usd": 0.048,
+          "by_resolution": {
+            "1K": 0.048
+          },
+          "note": "Solo prezzo 1K indicato; nome del campo immagine (image_urls) non confermato dalla pagina.",
+          "verified": "2026-11-13"
+        }
+      },
+      "minimax-h3-image": {
+        "fal_id": "minimax/h3-image/text-to-image",
+        "best_for": "MiniMax H3 Image: buona aderenza alle istruzioni su foto, illustrazioni e grafica, output fino a 20 MP. Usa image_size (non aspect_ratio).",
+        "default_args": {
+          "image_size": "landscape_16_9",
+          "num_images": 1
+        },
+        "output_path": "images[0].url",
+        "pricing": {
+          "unit": "tokens",
+          "usd": null,
+          "note": "Fatturazione a token MiniMax: $2,30/1M token testo in input, $1,50/1M token immagine in input, $3,80/1M token immagine in output. Nessun prezzo fisso per immagine.",
+          "verified": "2026-11-13"
+        }
+      },
+      "minimax-h3-image-edit": {
+        "fal_id": "minimax/h3-image/edit",
+        "best_for": "Editing MiniMax H3: modifiche mirate, cambi di stile e composizione fino a 16 immagini di riferimento. Da usare con --input-image (campo image_urls).",
+        "default_args": {
+          "image_size": "auto",
+          "num_images": 1
+        },
+        "output_path": "images[0].url",
+        "pricing": {
+          "unit": "tokens",
+          "usd": null,
+          "note": "Fatturazione a token MiniMax: $2,30/1M token testo in input, $1,50/1M token immagine in input, $3,80/1M token immagine in output. Nessun prezzo fisso per immagine.",
+          "verified": "2026-11-13"
+        }
+      },
+      "minimax-h3-highspeed": {
+        "fal_id": "minimax/h3-image/highspeed/text-to-image",
+        "best_for": "Variante Highspeed di MiniMax H3 Image, stesse capacità (fino a 20 MP). Per bozze rapide.",
+        "default_args": {
+          "image_size": "landscape_16_9",
+          "num_images": 1
+        },
+        "output_path": "images[0].url",
+        "pricing": {
+          "unit": "tokens",
+          "usd": null,
+          "note": "Fatturazione a token: $23/10M token testo in input, $76/10M token immagine in output. Nessun prezzo fisso per immagine.",
+          "verified": "2026-11-13"
+        }
+      },
+      "minimax-h3-highspeed-edit": {
+        "fal_id": "minimax/h3-image/highspeed/edit",
+        "best_for": "Variante Highspeed dell'editing MiniMax H3, fino a 16 riferimenti. Da usare con --input-image (campo image_urls).",
+        "default_args": {
+          "image_size": "auto",
+          "num_images": 1
+        },
+        "output_path": "images[0].url",
+        "pricing": {
+          "unit": "tokens",
+          "usd": null,
+          "note": "Fatturazione a token: $23/10M token testo in input, $30/10M token immagine in input, $76/10M token immagine in output. Nessun prezzo fisso per immagine.",
+          "verified": "2026-11-13"
+        }
       }
     }
   },
@@ -92,7 +224,7 @@
         },
         "unit_price_per_second_usd": 0.2419,
         "pricing_note": "720p max. A 5s video is ~$1.21.",
-        "price_last_verified": "2026-07-12",
+        "price_last_verified": "2026-11-13",
         "output_path": "video.url",
         "pricing": {
           "unit": "second",
@@ -100,7 +232,7 @@
           "by_resolution": {
             "720p": 0.2419
           },
-          "verified": "2026-07-12"
+          "verified": "2026-11-13"
         }
       },
       "kling-v3-pro": {
@@ -111,13 +243,14 @@
         },
         "unit_price_per_second_usd": 0.168,
         "unit_price_per_second_usd_audio_off": 0.112,
-        "price_last_verified": "2026-05-21",
+        "price_last_verified": "2026-11-13",
         "output_path": "video.url",
         "pricing": {
           "unit": "second",
           "usd": 0.168,
           "audio_off_usd": 0.112,
-          "verified": "2026-05-21"
+          "verified": "2026-11-13",
+          "voice_control_usd": 0.196
         }
       },
       "kling-v3-4k": {
@@ -127,12 +260,123 @@
           "duration": 5
         },
         "unit_price_per_second_usd": 0.42,
-        "price_last_verified": "2026-05-21",
+        "price_last_verified": "2026-11-13",
         "output_path": "video.url",
         "pricing": {
           "unit": "second",
           "usd": 0.42,
-          "verified": "2026-05-21"
+          "verified": "2026-11-13",
+          "extras": "Stesso prezzo con o senza audio"
+        }
+      },
+      "pixverse-v6-max": {
+        "fal_id": "pixverse/v6/max/image-to-video",
+        "best_for": "PixVerse V6 Max: image-to-video con audio opzionale (musica, effetti, dialoghi) e multi-clip con cambi di inquadratura, fino a 15 s. Buono per spot e clip in stile fashion film.",
+        "default_args": {
+          "duration": 5,
+          "resolution": "1080p",
+          "generate_audio_switch": true
+        },
+        "unit_price_per_second_usd": 0.252,
+        "price_last_verified": "2026-11-13",
+        "output_path": "video.url",
+        "pricing": {
+          "unit": "second",
+          "usd": 0.252,
+          "by_resolution": {
+            "360p": 0.081,
+            "540p": 0.099,
+            "720p": 0.135,
+            "1080p": 0.252
+          },
+          "note": "Prezzi con audio; senza audio: 360p $0,054, 540p $0,081, 720p $0,099, 1080p $0,198 al secondo. Multi-clip senza sovrapprezzo.",
+          "verified": "2026-11-13"
+        }
+      },
+      "vidu-q4": {
+        "fal_id": "fal-ai/vidu/q4/image-to-video",
+        "best_for": "Vidu Q4: anima un'immagine in clip da 3-16 s con audio nativo (parlato ed effetti) fino a 4K. Adatto a still, prodotti e personaggi con dialoghi; molto economico.",
+        "default_args": {
+          "duration": 5,
+          "resolution": "1080p"
+        },
+        "unit_price_per_second_usd": 0.084,
+        "price_last_verified": "2026-11-13",
+        "output_path": "video.url",
+        "pricing": {
+          "unit": "second",
+          "usd": 0.084,
+          "by_resolution": {
+            "540p": 0.0315,
+            "720p": 0.0665,
+            "1080p": 0.084,
+            "2K": 0.133,
+            "4K": 0.273
+          },
+          "extras": "Audio nativo incluso",
+          "verified": "2026-11-13"
+        }
+      },
+      "kandinsky6-pro": {
+        "fal_id": "fal-ai/kandinsky6-pro/image-to-video",
+        "best_for": "Kandinsky 6.0 Pro: clip cinematografiche ad alta fedeltà da un frame iniziale, per pubblicità e storytelling. Clip fisse da 5 s a 480p, upscale opzionale (upscale_factor 2.25 = 1080p).",
+        "default_args": {
+          "aspect_ratio": "auto",
+          "generate_audio": true
+        },
+        "unit_price_per_second_usd": 0.28,
+        "price_last_verified": "2026-11-13",
+        "output_path": "video.url",
+        "pricing": {
+          "unit": "second",
+          "usd": 0.28,
+          "by_resolution": {
+            "480p": 0.28
+          },
+          "note": "Derivato da $1,40 per clip 5 s 480p a 50 step. Con upscale a 1080p $1,58 a clip, upscale 4x $1,98. 20 step $0,58, 8 step $0,25.",
+          "verified": "2026-11-13"
+        }
+      },
+      "kandinsky6-lite": {
+        "fal_id": "fal-ai/kandinsky6-lite/image-to-video",
+        "best_for": "Kandinsky 6.0 Lite: versione veloce ed economica per animare prodotti, illustrazioni e contenuti social in volume. Clip da 5 s a 480p.",
+        "default_args": {
+          "aspect_ratio": "auto",
+          "generate_audio": true
+        },
+        "unit_price_per_second_usd": 0.034,
+        "price_last_verified": "2026-11-13",
+        "output_path": "video.url",
+        "pricing": {
+          "unit": "second",
+          "usd": 0.034,
+          "by_resolution": {
+            "480p": 0.034
+          },
+          "note": "Derivato da $0,17 per clip 5 s 480p a 10 step. Upscale a 1080p $0,34 a clip, 4x $0,69. Esempio di output nello schema sospetto (png): verificare con una chiamata reale.",
+          "verified": "2026-11-13"
+        }
+      },
+      "grok-imagine-1-5-lite": {
+        "fal_id": "xai/grok-imagine-video/v1.5/lite/image-to-video",
+        "best_for": "Grok Imagine Video 1.5 Lite di xAI: image-to-video molto economico a 480p/720p, utile per bozze. Nessun controllo audio.",
+        "default_args": {
+          "duration": 6,
+          "resolution": "720p"
+        },
+        "unit_price_per_second_usd": 0.03,
+        "price_last_verified": "2026-11-13",
+        "output_path": "video.url",
+        "pricing": {
+          "unit": "second",
+          "usd": 0.03,
+          "by_resolution": {
+            "480p": 0.02,
+            "720p": 0.03,
+            "1080p": 0.14
+          },
+          "extras": "+$0,01 per immagine in input",
+          "verified": "2026-11-13"
         }
       }
     }
@@ -152,10 +396,87 @@
           "up_to_720p": 0.01,
           "720p_to_1080p": 0.02,
           "above_1080p": 0.08,
-          "note": "Price DOUBLES if output is 60fps. To stay on the cheaper tier, downconvert the source to 30fps before upscaling (the script's --fps flag does this)."
+          "note": "Price DOUBLES if output is 60fps. To stay on the cheaper tier, downconvert the source to 30fps before upscaling (the script's --fps flag does this). Gaia 2 output costs half."
         },
-        "price_last_verified": "2026-06-04",
-        "output_path": "video.url"
+        "price_last_verified": "2026-11-13",
+        "output_path": "video.url",
+        "pricing": {
+          "unit": "second",
+          "usd": 0.02,
+          "by_resolution": {
+            "720p": 0.01,
+            "1080p": 0.02,
+            "4K": 0.08
+          },
+          "note": "Fasce sulla risoluzione di output: fino a 720p, 720p-1080p, oltre 1080p. Il prezzo raddoppia a 60fps; Gaia 2 costa la metà.",
+          "verified": "2026-11-13"
+        }
+      },
+      "ltx-2-5-upscale": {
+        "fal_id": "lightricks/ltx-2.5/upscale",
+        "best_for": "Upscaler LTX 2.5: porta video H.264/HEVC a 1080p, 4K o 8K mantenendo proporzioni e audio stereo. Utile per arrivare a 4K/8K; per il 1080p Topaz costa meno.",
+        "default_args": {
+          "resolution": "4k"
+        },
+        "unit_price_per_second_usd": 0.3,
+        "price_last_verified": "2026-11-13",
+        "output_path": "video.url",
+        "pricing": {
+          "unit": "second",
+          "usd": 0.3,
+          "by_resolution": {
+            "1080p": 0.08,
+            "4k": 0.3,
+            "8k": 1.2
+          },
+          "note": "Per secondo di video in input, in base alla risoluzione di output.",
+          "verified": "2026-11-13"
+        }
+      },
+      "flashvsr-plus": {
+        "fal_id": "openimaginglab/flashvsr-plus",
+        "best_for": "FlashVSR+: upscale veloce fino a 4x (output max ~4K) con diffusione a un passo, modalità turbo o base; mantiene l'audio.",
+        "default_args": {
+          "upscale_factor": 2,
+          "model": "turbo"
+        },
+        "unit_price_per_second_usd": null,
+        "price_last_verified": "2026-11-13",
+        "output_path": "video.url",
+        "pricing": {
+          "unit": "second",
+          "usd": null,
+          "note": "$0,0005 per megapixel di output × frame. Es.: 1920×1080 con 121 frame ~ $0,13. temporal_compression 2 raddoppia, 1 quadruplica il costo.",
+          "verified": "2026-11-13"
+        }
+      },
+      "kandinsky6-vsr": {
+        "fal_id": "fal-ai/kandinsky6-vsr",
+        "best_for": "Kandinsky 6.0 VSR: super-risoluzione video con dettagli più nitidi e fotogrammi stabili senza flicker, su footage generato o reale. Richiede anche un prompt.",
+        "default_args": {},
+        "unit_price_per_second_usd": null,
+        "price_last_verified": "2026-11-13",
+        "output_path": "video.url",
+        "pricing": {
+          "unit": "second",
+          "usd": null,
+          "note": "$0,00036 per megapixel di output × frame a 5 step (5 s 480p→1080p ~ $0,09). Parametri non verificati: pagina API non leggibile.",
+          "verified": "2026-11-13"
+        }
+      },
+      "kandinsky6-vsr-lite": {
+        "fal_id": "fal-ai/kandinsky6-vsr/lite",
+        "best_for": "Kandinsky 6.0 VSR Lite: versione veloce ed economica per anteprime e grandi volumi. Richiede anche un prompt.",
+        "default_args": {},
+        "unit_price_per_second_usd": null,
+        "price_last_verified": "2026-11-13",
+        "output_path": "video.url",
+        "pricing": {
+          "unit": "second",
+          "usd": null,
+          "note": "$0,00036 per megapixel di output × frame a 5 step (5 s 480p→1080p ~ $0,09). Parametri non verificati: pagina API non leggibile.",
+          "verified": "2026-11-13"
+        }
       }
     }
   },
@@ -196,7 +517,54 @@
   },
   "recently_added": {
     "_doc": "Endpoint ids already reviewed from fal.ai/explore/recently-added, so the daily task only looks at new ones.",
-    "seen": [],
-    "last_checked": null
+    "seen": [
+      "blackforestlabs/flux-3/edit-image",
+      "blackforestlabs/flux-3/text-to-image",
+      "bytedance/seedream/v5.5/layerize",
+      "fal-ai/kandinsky6-lite/image-to-video",
+      "fal-ai/kandinsky6-lite/text-to-video",
+      "fal-ai/kandinsky6-pro/image-to-video",
+      "fal-ai/kandinsky6-pro/text-to-video",
+      "fal-ai/kandinsky6-vsr",
+      "fal-ai/kandinsky6-vsr/lite",
+      "fal-ai/marigold-v2",
+      "fal-ai/vidu/q4/image-to-video",
+      "fal-ai/vidu/q4/reference-to-video",
+      "google/nano-banana-2.1",
+      "google/nano-banana-2.1/edit",
+      "lightricks/ltx-2.5/alpha-gen",
+      "lightricks/ltx-2.5/hdr",
+      "lightricks/ltx-2.5/reframe",
+      "lightricks/ltx-2.5/upscale",
+      "meshy/n1/retexture",
+      "meshy/relief",
+      "meshy/rigging",
+      "meshy/rigging/multi-animation",
+      "meshy/t2.5/image-to-3d",
+      "meshy/t2.5/text-to-3d",
+      "meshy/t2/image-to-3d",
+      "meshy/t2/text-to-3d",
+      "meshy/v6-lite/retexture",
+      "microsoft/moge-2",
+      "microsoft/moge-3",
+      "minimax/h3-image/edit",
+      "minimax/h3-image/highspeed/edit",
+      "minimax/h3-image/highspeed/text-to-image",
+      "minimax/h3-image/text-to-image",
+      "minimax/h3-max-turbo/extend-video",
+      "minimax/h3-max/recast",
+      "minimax/h3-max/relight",
+      "mureka/api/generate/instrumental",
+      "mureka/api/generate/lyrics",
+      "mureka/api/generate/lyrics-video",
+      "mureka/api/generate/podcast",
+      "mureka/api/generate/song",
+      "openimaginglab/flashvsr-plus",
+      "pixverse/v6/max/image-to-video",
+      "pixverse/v6/max/text-to-video",
+      "xai/grok-imagine-video/v1.5/lite/image-to-video",
+      "xai/grok-imagine-video/v1.5/lite/text-to-video"
+    ],
+    "last_checked": "2026-11-13"
   }
 }
